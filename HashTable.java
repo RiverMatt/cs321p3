@@ -1,10 +1,9 @@
-import java.io.*;
 
 public class HashTable<E> {
 	
 	/* Instance Variables */
 	private final int m = 95791;	// twin is 95789
-	private int n, probeType, insertCount, probeTotal, dupTotal, load;
+	private int n, probeType, insertCount, probeTotal, dupTotal;
 	private double loadFactor;
 	private HashObject<E>[] A;
 	private int[] probeCount;
@@ -61,7 +60,6 @@ public class HashTable<E> {
 					insertCount++;
 					return hashindex;
 				} else if (A[hashindex].equals(_hashobj)) {
-					A[hashindex].incDupCount();
 					dupTotal++;
 					probeCount[hashindex]++;
 					probeTotal++;
@@ -80,8 +78,13 @@ public class HashTable<E> {
 		return A;
 	}
 
-	public int[] getProbeCount() {
-		return probeCount;
+	public double getProbeAverage() {
+		double avg = 0;
+		for (int i = 0; i < probeCount.length; i++) {
+			avg += probeCount[i];
+		}
+		avg = avg/m;
+		return avg;
 	}
 	
 	public int getProbeTotal() {
@@ -90,5 +93,9 @@ public class HashTable<E> {
 
 	public int getInsertCount() {
 		return insertCount;
+	}
+
+	public int getDupTotal() {
+		return dupTotal;
 	}
 }

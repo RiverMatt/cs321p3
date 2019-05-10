@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 @SuppressWarnings("unchecked")
 public class HashTest {
-	
+
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) {
 
 		/* Setting up the corned beef */
@@ -80,6 +81,8 @@ public class HashTest {
 						linearLimit = lh.insert(obj, key);
 					}
 				}
+				scan.close();
+
 				Scanner scan2 = new Scanner(f);
 				while (doubleLimit != -1) {
 					while (scan2.hasNext()) {
@@ -90,11 +93,23 @@ public class HashTest {
 					}
 					
 				}
+				scan2.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+
+		/* Serving the hash */
+		System.out.printf("Table size: %d\n", m);
+		System.out.printf("Data source: %s\n", source);
+		System.out.printf("Linear hash:\nInserted %5d elements, with %5d duplicates\nLoad factor: %3d, Average number of probes: %4d", lh.getInsertCount(), lh.getDupTotal(), loadfactor, lh.getProbeAverage());
+		System.out.printf("\n\n");
+		System.out.printf("Double hash:\nInserted %5d elements, with %5d duplicates\nLoad factor: %3d, Average number of probes: %4d", dh.getInsertCount(), dh.getDupTotal(), loadfactor, dh.getProbeAverage());
 	}
 
 	/* Other Methods */
+
+//	private static String output() {
+//		System.out.printf("Table size: %d", m);
+//	}
 }
