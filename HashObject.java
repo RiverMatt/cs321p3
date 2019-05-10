@@ -17,7 +17,7 @@ public class HashObject<T> {
 
 	/* Other Methods */
 
-	public long geyKey() {
+	public long getKey() {
 		return key;
 	}
 

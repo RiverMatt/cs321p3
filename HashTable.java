@@ -76,7 +76,7 @@ public class HashTable<E> {
 		return -1;
 	}
 
-	public HashObject[] getTable() {
+	public HashObject<E>[] getTable() {
 		return A;
 	}
 
