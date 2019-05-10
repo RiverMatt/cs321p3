@@ -59,12 +59,22 @@ public class HashTest {
 		} else if (inputType == 2) {
 			while (linearLimit != -1) {
 				long n = System.currentTimeMillis();
+				try {
+					Thread.sleep(2);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				HashObject<Long> obj = new HashObject<Long>(n);
 				long key = obj.getKey();
 				linearLimit = lh.insert(obj, key);
 			}
 			while (doubleLimit != -1) {
 				long n = System.currentTimeMillis();
+				try {
+					Thread.sleep(2);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				HashObject<Long> obj = new HashObject<Long>(n);
 				long key = obj.getKey();
 				doubleLimit = dh.insert(obj, key);
@@ -102,14 +112,9 @@ public class HashTest {
 		/* Serving the hash */
 		System.out.printf("Table size: %d\n", m);
 		System.out.printf("Data source: %s\n", source);
-		System.out.printf("Linear hash:\nInserted %5d elements, with %5d duplicates\nLoad factor: %3d, Average number of probes: %4d", lh.getInsertCount(), lh.getDupTotal(), loadfactor, lh.getProbeAverage());
+		System.out.printf("Linear hash:\nInserted %5d elements, with %5d duplicates\nLoad factor: %.2f, Average number of probes: %.3f", lh.getInsertCount(), lh.getDupTotal(), loadfactor, lh.getProbeAverage());
 		System.out.printf("\n\n");
-		System.out.printf("Double hash:\nInserted %5d elements, with %5d duplicates\nLoad factor: %3d, Average number of probes: %4d", dh.getInsertCount(), dh.getDupTotal(), loadfactor, dh.getProbeAverage());
+		System.out.printf("Double hash:\nInserted %5d elements, with %5d duplicates\nLoad factor: %.2f, Average number of probes: %.3f\n", dh.getInsertCount(), dh.getDupTotal(), loadfactor, dh.getProbeAverage());
 	}
 
-	/* Other Methods */
-
-//	private static String output() {
-//		System.out.printf("Table size: %d", m);
-//	}
 }

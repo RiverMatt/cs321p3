@@ -15,7 +15,7 @@ public class HashTable<E> {
 		probeType = _probeType;
 		loadFactor = _loadFactor;
 		
-		n = (int) loadFactor*m;	// load
+		n = (int) Math.ceil(loadFactor*m);	// load
 		
 		A = (HashObject<E>[]) new HashObject[m];
 		insertCount = 0;
@@ -37,7 +37,7 @@ public class HashTable<E> {
 			hashindex = (int) ((_key % m + i) % m);
 			return hashindex;
 		} else {
-			hashindex = (int) ((_key % m) + i*(1 + _key % (m-2))) % m;
+			hashindex = (int) (((_key % m) + i*(1 + _key % (m-2))) % m);
 			return hashindex;
 		}
 	
@@ -69,9 +69,11 @@ public class HashTable<E> {
 				probeTotal++;
 				
 			}
+			return -1;
 		}
 
 		return -1;
+
 	}
 
 	public HashObject<E>[] getTable() {
