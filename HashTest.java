@@ -99,7 +99,7 @@ public class HashTest {
 						String n = scan2.next();
 						HashObject<String> obj = new HashObject<String>(n);
 						long key = obj.getKey();
-						doubleLimit = lh.insert(obj, key);
+						doubleLimit = dh.insert(obj, key);
 					}
 					
 				}
@@ -114,7 +114,7 @@ public class HashTest {
 		System.out.printf("Data source: %s\n", source);
 		System.out.printf("Linear hash:\nInserted %5d elements, with %5d duplicates\nLoad factor: %.2f, Average number of probes: %.3f", lh.getInsertCount(), lh.getDupTotal(), loadfactor, lh.getProbeAverage());
 		System.out.printf("\n\n");
-		System.out.printf("Double hash:\nInserted %5d elements, with %5d duplicates\nLoad factor: %.2f, Average number of probes: %.3f\n", dh.getInsertCount(), dh.getDupTotal(), loadfactor, dh.getProbeAverage());
+		System.out.printf("Double hash:\nInserted %5d elements, with %5d duplicates\nLoad factor: %.2f, Average number of probes: %.3f\n\n", dh.getInsertCount(), dh.getDupTotal(), loadfactor, dh.getProbeAverage());
 	}
 
 }
